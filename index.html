@@ -5,16 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countdown Widget</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: #ffffff;
-            color: #37352f;
+            background: #0d1117;
+            color: #c9d1d9;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -23,101 +19,110 @@
 
         .container {
             width: 100%;
-            max-width: 500px;
-            padding: 24px;
+            max-width: 420px;
+            padding: 20px;
         }
 
         /* Setup Screen */
         .setup-screen {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 14px;
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 8px;
-            color: #000000;
+            color: #e6edf3;
+            margin-bottom: 2px;
         }
 
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
         }
 
         label {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
-            color: #6b6b6b;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
 
         input[type="text"],
         input[type="datetime-local"] {
-            padding: 12px 14px;
-            border: 1px solid #e3e2e0;
-            border-radius: 8px;
-            font-size: 15px;
+            padding: 10px 12px;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            font-size: 14px;
             font-family: inherit;
-            background: #f7f6f3;
-            color: #37352f;
+            background: #161b22;
+            color: #e6edf3;
             transition: all 0.2s;
+            width: 100%;
         }
 
-        input[type="text"]:focus,
-        input[type="datetime-local"]:focus {
+        input:focus {
             outline: none;
-            border-color: #2eaadc;
-            background: #ffffff;
+            border-color: #10b981;
+            background: #0d1117;
+        }
+
+        input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.7);
+            cursor: pointer;
         }
 
         .time-options {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .option-btn {
-            padding: 10px 20px;
-            border: 1px solid #e3e2e0;
-            border-radius: 8px;
-            background: #f7f6f3;
+            padding: 6px 14px;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            background: #161b22;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
-            color: #37352f;
+            color: #8b949e;
             transition: all 0.2s;
             font-family: inherit;
+            user-select: none;
         }
 
         .option-btn:hover {
-            background: #f0efea;
+            border-color: #10b981;
+            color: #10b981;
         }
 
         .option-btn.active {
-            background: #2eaadc;
-            color: white;
-            border-color: #2eaadc;
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
         }
 
         .start-btn {
-            padding: 14px;
-            background: #000000;
-            color: white;
+            padding: 12px;
+            background: #10b981;
+            color: #ffffff;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             font-family: inherit;
-            margin-top: 8px;
+            margin-top: 4px;
+            width: 100%;
         }
 
-        .start-btn:hover {
-            background: #333333;
-        }
+        .start-btn:hover { background: #059669; }
+        .start-btn:active { transform: scale(0.98); }
 
         /* Timer Screen */
         .timer-screen {
@@ -125,31 +130,32 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 24px;
-            animation: fadeIn 0.5s ease;
+            gap: 16px;
+            animation: fadeIn 0.4s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .event-name {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 700;
-            color: #000000;
+            color: #e6edf3;
             word-break: break-word;
+            line-height: 1.3;
         }
 
         .target-date {
-            font-size: 14px;
-            color: #6b6b6b;
-            margin-top: -16px;
+            font-size: 12px;
+            color: #8b949e;
+            margin-top: -10px;
         }
 
         .timer-display {
             display: flex;
-            gap: 16px;
+            gap: 10px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -158,77 +164,85 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 80px;
+            min-width: 56px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 10px 8px;
         }
 
         .time-value {
-            font-size: 48px;
+            font-size: 28px;
             font-weight: 700;
-            color: #000000;
+            color: #10b981;
             line-height: 1;
             font-variant-numeric: tabular-nums;
         }
 
         .time-label {
-            font-size: 13px;
-            color: #6b6b6b;
+            font-size: 10px;
+            color: #8b949e;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 8px;
+            margin-top: 6px;
         }
 
         .separator {
-            font-size: 36px;
+            font-size: 22px;
             font-weight: 300;
-            color: #d1d1d1;
-            align-self: flex-start;
-            margin-top: 4px;
+            color: #30363d;
+            align-self: center;
         }
 
         .status {
-            font-size: 16px;
-            padding: 8px 16px;
-            border-radius: 20px;
+            font-size: 12px;
+            padding: 6px 14px;
+            border-radius: 12px;
             font-weight: 500;
         }
 
         .status.counting {
-            background: #e3f2fd;
-            color: #1976d2;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
         }
 
         .status.ended {
-            background: #ffebee;
-            color: #c62828;
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
         }
 
         .back-btn {
-            padding: 10px 24px;
+            padding: 8px 20px;
             background: transparent;
-            border: 1px solid #e3e2e0;
-            border-radius: 8px;
-            font-size: 14px;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            font-size: 12px;
             font-weight: 500;
-            color: #37352f;
+            color: #8b949e;
             cursor: pointer;
             transition: all 0.2s;
             font-family: inherit;
         }
 
         .back-btn:hover {
-            background: #f7f6f3;
+            border-color: #10b981;
+            color: #10b981;
         }
 
-        @media (max-width: 480px) {
-            .time-value {
-                font-size: 36px;
-            }
-            .time-unit {
-                min-width: 60px;
-            }
-            .event-name {
-                font-size: 22px;
-            }
+        .error-msg {
+            color: #ef4444;
+            font-size: 12px;
+            padding: 8px 10px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 6px;
+            display: none;
+        }
+
+        @media (max-width: 400px) {
+            .time-value { font-size: 22px; }
+            .time-unit { min-width: 48px; padding: 8px 6px; }
+            .event-name { font-size: 18px; }
         }
     </style>
 <base target="_blank">
@@ -241,7 +255,7 @@
 
             <div class="input-group">
                 <label for="eventName">Event Name</label>
-                <input type="text" id="eventName" placeholder="e.g., Product Launch, Birthday..." autocomplete="off">
+                <input type="text" id="eventName" placeholder="e.g., Product Launch..." autocomplete="off">
             </div>
 
             <div class="input-group">
@@ -250,193 +264,279 @@
             </div>
 
             <div class="input-group">
-                <label>Display Format</label>
+                <label>Display Format (Select Multiple)</label>
                 <div class="time-options">
-                    <button class="option-btn active" data-mode="full">Full</button>
-                    <button class="option-btn" data-mode="months">Months</button>
-                    <button class="option-btn" data-mode="weeks">Weeks</button>
-                    <button class="option-btn" data-mode="days">Days</button>
-                    <button class="option-btn" data-mode="hours">Hours</button>
+                    <button class="option-btn active" data-mode="months">Months</button>
+                    <button class="option-btn active" data-mode="weeks">Weeks</button>
+                    <button class="option-btn active" data-mode="days">Days</button>
+                    <button class="option-btn active" data-mode="hours">Hours</button>
+                    <button class="option-btn active" data-mode="minutes">Minutes</button>
+                    <button class="option-btn active" data-mode="seconds">Seconds</button>
                 </div>
             </div>
 
-            <button class="start-btn" onclick="startCountdown()">Start Countdown</button>
+            <div class="error-msg" id="errorMsg"></div>
+            <button class="start-btn" id="startBtn">Start Countdown</button>
         </div>
 
         <!-- Timer Screen -->
         <div class="timer-screen" id="timerScreen">
             <div class="event-name" id="displayName"></div>
             <div class="target-date" id="displayTarget"></div>
-
             <div class="timer-display" id="timerDisplay"></div>
-
             <div class="status counting" id="status">Counting down...</div>
-
-            <button class="back-btn" onclick="resetCountdown()">New Countdown</button>
+            <button class="back-btn" id="backBtn">New Countdown</button>
         </div>
     </div>
 
     <script>
-        let timerInterval;
-        let displayMode = 'full';
-        let targetTimestamp;
-        let eventNameText;
+        (function() {
+            'use strict';
 
-        // Set default date to tomorrow same time
-        const now = new Date();
-        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-        now.setDate(now.getDate() + 1);
-        now.setMinutes(0);
-        now.setSeconds(0);
-        now.setMilliseconds(0);
-        document.getElementById('targetDate').value = now.toISOString().slice(0, 16);
+            let timerInterval;
+            let activeModes = ['months', 'weeks', 'days', 'hours', 'minutes', 'seconds'];
+            let targetTimestamp;
+            let eventNameText;
 
-        // Handle option buttons
-        document.querySelectorAll('.option-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                displayMode = this.dataset.mode;
-            });
-        });
+            // Set default date to tomorrow
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            now.setDate(now.getDate() + 1);
+            now.setMinutes(0);
+            now.setSeconds(0);
+            now.setMilliseconds(0);
 
-        function startCountdown() {
-            const nameInput = document.getElementById('eventName').value.trim();
-            const dateInput = document.getElementById('targetDate').value;
-
-            if (!nameInput) {
-                alert('Please enter an event name');
-                return;
-            }
-            if (!dateInput) {
-                alert('Please select a date and time');
-                return;
+            const dateInput = document.getElementById('targetDate');
+            if (dateInput) {
+                dateInput.value = now.toISOString().slice(0, 16);
             }
 
-            targetTimestamp = new Date(dateInput).getTime();
-            eventNameText = nameInput;
-
-            if (targetTimestamp <= Date.now()) {
-                alert('Please select a future date and time');
-                return;
-            }
-
-            // Switch screens
-            document.getElementById('setupScreen').style.display = 'none';
-            document.getElementById('timerScreen').style.display = 'flex';
-
-            // Update display info
-            document.getElementById('displayName').textContent = eventNameText;
-            const dateObj = new Date(targetTimestamp);
-            document.getElementById('displayTarget').textContent = dateObj.toLocaleString('en-US', {
-                weekday: 'short',
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
+            // Multi-select option buttons
+            document.querySelectorAll('.option-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const mode = this.dataset.mode;
+                    if (this.classList.contains('active')) {
+                        // Don't allow deselecting the last option
+                        if (activeModes.length > 1) {
+                            this.classList.remove('active');
+                            activeModes = activeModes.filter(function(m) { return m !== mode; });
+                        }
+                    } else {
+                        this.classList.add('active');
+                        activeModes.push(mode);
+                        // Sort to maintain order
+                        const order = ['months', 'weeks', 'days', 'hours', 'minutes', 'seconds'];
+                        activeModes.sort(function(a, b) {
+                            return order.indexOf(a) - order.indexOf(b);
+                        });
+                    }
+                });
             });
 
-            updateTimer();
-            timerInterval = setInterval(updateTimer, 1000);
-        }
+            // Start button
+            const startBtn = document.getElementById('startBtn');
+            if (startBtn) {
+                startBtn.addEventListener('click', startCountdown);
+            }
 
-        function updateTimer() {
-            const now = Date.now();
-            const diff = targetTimestamp - now;
+            // Back button
+            const backBtn = document.getElementById('backBtn');
+            if (backBtn) {
+                backBtn.addEventListener('click', resetCountdown);
+            }
 
-            if (diff <= 0) {
+            function showError(msg) {
+                const errorEl = document.getElementById('errorMsg');
+                if (errorEl) {
+                    errorEl.textContent = msg;
+                    errorEl.style.display = 'block';
+                    setTimeout(function() {
+                        errorEl.style.display = 'none';
+                    }, 3000);
+                }
+            }
+
+            function startCountdown() {
+                const nameInput = document.getElementById('eventName');
+                const dateInput = document.getElementById('targetDate');
+
+                if (!nameInput || !dateInput) return;
+
+                const nameValue = nameInput.value.trim();
+                const dateValue = dateInput.value;
+
+                if (!nameValue) {
+                    showError('Please enter an event name');
+                    return;
+                }
+                if (!dateValue) {
+                    showError('Please select a date and time');
+                    return;
+                }
+
+                targetTimestamp = new Date(dateValue).getTime();
+                eventNameText = nameValue;
+
+                if (isNaN(targetTimestamp)) {
+                    showError('Invalid date format');
+                    return;
+                }
+
+                if (targetTimestamp <= Date.now()) {
+                    showError('Please select a future date and time');
+                    return;
+                }
+
+                const setupScreen = document.getElementById('setupScreen');
+                const timerScreen = document.getElementById('timerScreen');
+
+                if (setupScreen) setupScreen.style.display = 'none';
+                if (timerScreen) timerScreen.style.display = 'flex';
+
+                const displayName = document.getElementById('displayName');
+                const displayTarget = document.getElementById('displayTarget');
+
+                if (displayName) displayName.textContent = eventNameText;
+
+                if (displayTarget) {
+                    const dateObj = new Date(targetTimestamp);
+                    displayTarget.textContent = dateObj.toLocaleString('en-US', {
+                        weekday: 'short',
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                }
+
+                updateTimer();
+                timerInterval = setInterval(updateTimer, 1000);
+            }
+
+            function updateTimer() {
+                const now = Date.now();
+                const diff = targetTimestamp - now;
+
+                if (diff <= 0) {
+                    clearInterval(timerInterval);
+                    const timerDisplay = document.getElementById('timerDisplay');
+                    const status = document.getElementById('status');
+
+                    if (timerDisplay) {
+                        timerDisplay.innerHTML = '<div style="font-size: 24px; font-weight: 700; color: #ef4444;">Time is Up!</div>';
+                    }
+                    if (status) {
+                        status.textContent = 'Event has started';
+                        status.className = 'status ended';
+                    }
+                    return;
+                }
+
+                const units = calculateUnits(diff);
+                renderTimer(units);
+            }
+
+            function calculateUnits(diff) {
+                const msPerSecond = 1000;
+                const msPerMinute = msPerSecond * 60;
+                const msPerHour = msPerMinute * 60;
+                const msPerDay = msPerHour * 24;
+                const msPerWeek = msPerDay * 7;
+                const msPerMonth = msPerDay * 30.44;
+
+                const months = Math.floor(diff / msPerMonth);
+                const weeks = Math.floor(diff / msPerWeek);
+                const days = Math.floor(diff / msPerDay);
+                const hours = Math.floor(diff / msPerHour);
+                const minutes = Math.floor((diff % msPerHour) / msPerMinute);
+                const seconds = Math.floor((diff % msPerMinute) / msPerSecond);
+
+                // For cascading display (when multiple units selected)
+                let remaining = diff;
+                const fullMonths = Math.floor(remaining / msPerMonth);
+                remaining %= msPerMonth;
+                const fullWeeks = Math.floor(remaining / msPerWeek);
+                remaining %= msPerWeek;
+                const fullDays = Math.floor(remaining / msPerDay);
+                remaining %= msPerDay;
+                const fullHours = Math.floor(remaining / msPerHour);
+                remaining %= msPerHour;
+                const fullMinutes = Math.floor(remaining / msPerMinute);
+                remaining %= msPerMinute;
+                const fullSeconds = Math.floor(remaining / msPerSecond);
+
+                return {
+                    months, weeks, days, hours, minutes, seconds,
+                    fullMonths, fullWeeks, fullDays, fullHours, fullMinutes, fullSeconds
+                };
+            }
+
+            function renderTimer(u) {
+                const display = document.getElementById('timerDisplay');
+                if (!display) return;
+
+                let html = '';
+                const parts = [];
+
+                const createUnit = function(val, label) {
+                    return '<div class="time-unit"><div class="time-value">' + 
+                           String(val).padStart(2, '0') + 
+                           '</div><div class="time-label">' + label + '</div></div>';
+                };
+
+                // Build display based on selected modes using cascading values
+                activeModes.forEach(function(mode, index) {
+                    let val, label;
+                    switch(mode) {
+                        case 'months':
+                            val = u.fullMonths;
+                            label = 'Months';
+                            break;
+                        case 'weeks':
+                            val = u.fullWeeks;
+                            label = 'Weeks';
+                            break;
+                        case 'days':
+                            val = u.fullDays;
+                            label = 'Days';
+                            break;
+                        case 'hours':
+                            val = u.fullHours;
+                            label = 'Hours';
+                            break;
+                        case 'minutes':
+                            val = u.fullMinutes;
+                            label = 'Mins';
+                            break;
+                        case 'seconds':
+                            val = u.fullSeconds;
+                            label = 'Secs';
+                            break;
+                    }
+                    parts.push(createUnit(val, label));
+                });
+
+                html = parts.join('<div class="separator">:</div>');
+                display.innerHTML = html;
+            }
+
+            function resetCountdown() {
                 clearInterval(timerInterval);
-                document.getElementById('timerDisplay').innerHTML = '<div style="font-size: 32px; font-weight: 700; color: #c62828;">Time's Up!</div>';
-                document.getElementById('status').textContent = 'Event has started';
-                document.getElementById('status').className = 'status ended';
-                return;
+                const setupScreen = document.getElementById('setupScreen');
+                const timerScreen = document.getElementById('timerScreen');
+                const status = document.getElementById('status');
+                const eventName = document.getElementById('eventName');
+
+                if (timerScreen) timerScreen.style.display = 'none';
+                if (setupScreen) setupScreen.style.display = 'flex';
+                if (eventName) eventName.value = '';
+                if (status) {
+                    status.className = 'status counting';
+                    status.textContent = 'Counting down...';
+                }
             }
-
-            const units = calculateUnits(diff);
-            renderTimer(units);
-        }
-
-        function calculateUnits(diff) {
-            const msPerSecond = 1000;
-            const msPerMinute = msPerSecond * 60;
-            const msPerHour = msPerMinute * 60;
-            const msPerDay = msPerHour * 24;
-            const msPerWeek = msPerDay * 7;
-            const msPerMonth = msPerDay * 30.44; // Average month
-
-            const months = Math.floor(diff / msPerMonth);
-            const weeks = Math.floor(diff / msPerWeek);
-            const days = Math.floor(diff / msPerDay);
-            const hours = Math.floor(diff / msPerHour);
-            const minutes = Math.floor((diff % msPerHour) / msPerMinute);
-            const seconds = Math.floor((diff % msPerMinute) / msPerSecond);
-
-            // For full mode, calculate cascading units
-            let remaining = diff;
-            const fullMonths = Math.floor(remaining / msPerMonth);
-            remaining %= msPerMonth;
-            const fullDays = Math.floor(remaining / msPerDay);
-            remaining %= msPerDay;
-            const fullHours = Math.floor(remaining / msPerHour);
-            remaining %= msPerHour;
-            const fullMinutes = Math.floor(remaining / msPerMinute);
-            remaining %= msPerMinute;
-            const fullSeconds = Math.floor(remaining / msPerSecond);
-
-            return {
-                months, weeks, days, hours, minutes, seconds,
-                fullMonths, fullDays, fullHours, fullMinutes, fullSeconds
-            };
-        }
-
-        function renderTimer(u) {
-            const display = document.getElementById('timerDisplay');
-            let html = '';
-
-            const createUnit = (val, label) => `
-                <div class="time-unit">
-                    <div class="time-value">${String(val).padStart(2, '0')}</div>
-                    <div class="time-label">${label}</div>
-                </div>
-            `;
-
-            switch(displayMode) {
-                case 'months':
-                    html = createUnit(u.months, 'Months');
-                    break;
-                case 'weeks':
-                    html = createUnit(u.weeks, 'Weeks');
-                    break;
-                case 'days':
-                    html = createUnit(u.days, 'Days');
-                    break;
-                case 'hours':
-                    html = createUnit(u.hours, 'Hours');
-                    break;
-                case 'full':
-                default:
-                    const units = [];
-                    if (u.fullMonths > 0) units.push(createUnit(u.fullMonths, 'Months'));
-                    if (u.fullDays > 0 || u.fullMonths > 0) units.push(createUnit(u.fullDays, 'Days'));
-                    if (u.fullHours > 0 || u.fullDays > 0 || u.fullMonths > 0) units.push(createUnit(u.fullHours, 'Hours'));
-                    units.push(createUnit(u.fullMinutes, 'Minutes'));
-                    units.push(createUnit(u.fullSeconds, 'Seconds'));
-                    html = units.join('<div class="separator">:</div>');
-                    break;
-            }
-
-            display.innerHTML = html;
-        }
-
-        function resetCountdown() {
-            clearInterval(timerInterval);
-            document.getElementById('timerScreen').style.display = 'none';
-            document.getElementById('setupScreen').style.display = 'flex';
-            document.getElementById('eventName').value = '';
-            document.getElementById('status').className = 'status counting';
-            document.getElementById('status').textContent = 'Counting down...';
-        }
+        })();
     </script>
 </body>
 </html>
