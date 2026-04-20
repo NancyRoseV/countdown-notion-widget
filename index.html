@@ -19,22 +19,21 @@
 
         .container {
             width: 100%;
-            max-width: 420px;
-            padding: 20px;
+            max-width: 480px;
+            padding: 16px;
         }
 
         /* Setup Screen */
         .setup-screen {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
 
         h1 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             color: #e6edf3;
-            margin-bottom: 2px;
         }
 
         .input-group {
@@ -44,7 +43,7 @@
         }
 
         label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             color: #8b949e;
             text-transform: uppercase;
@@ -53,10 +52,10 @@
 
         input[type="text"],
         input[type="datetime-local"] {
-            padding: 10px 12px;
+            padding: 8px 10px;
             border: 1px solid #30363d;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 13px;
             font-family: inherit;
             background: #161b22;
             color: #e6edf3;
@@ -77,17 +76,17 @@
 
         .time-options {
             display: flex;
-            gap: 6px;
+            gap: 5px;
             flex-wrap: wrap;
         }
 
         .option-btn {
-            padding: 6px 14px;
+            padding: 5px 12px;
             border: 1px solid #30363d;
-            border-radius: 6px;
+            border-radius: 5px;
             background: #161b22;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             color: #8b949e;
             transition: all 0.2s;
@@ -107,17 +106,16 @@
         }
 
         .start-btn {
-            padding: 12px;
+            padding: 10px;
             background: #10b981;
             color: #ffffff;
             border: none;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             font-family: inherit;
-            margin-top: 4px;
             width: 100%;
         }
 
@@ -130,49 +128,50 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 16px;
+            gap: 10px;
             animation: fadeIn 0.4s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .event-name {
-            font-size: 20px;
+            font-size: 15px;
             font-weight: 700;
             color: #e6edf3;
             word-break: break-word;
             line-height: 1.3;
+            max-width: 100%;
         }
 
         .target-date {
-            font-size: 12px;
-            color: #8b949e;
-            margin-top: -10px;
+            font-size: 11px;
+            color: #6e7681;
         }
 
-        .timer-display {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(52px, 1fr));
+            gap: 6px;
+            width: 100%;
+            max-width: 380px;
         }
 
         .time-unit {
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 56px;
             background: #161b22;
-            border: 1px solid #30363d;
+            border: 1px solid #21262d;
             border-radius: 8px;
-            padding: 10px 8px;
+            padding: 10px 4px;
+            min-width: 0;
         }
 
         .time-value {
-            font-size: 28px;
+            font-size: 22px;
             font-weight: 700;
             color: #10b981;
             line-height: 1;
@@ -180,43 +179,36 @@
         }
 
         .time-label {
-            font-size: 10px;
-            color: #8b949e;
+            font-size: 9px;
+            color: #6e7681;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 6px;
-        }
-
-        .separator {
-            font-size: 22px;
-            font-weight: 300;
-            color: #30363d;
-            align-self: center;
+            letter-spacing: 0.4px;
+            margin-top: 4px;
         }
 
         .status {
-            font-size: 12px;
-            padding: 6px 14px;
-            border-radius: 12px;
+            font-size: 11px;
+            padding: 4px 12px;
+            border-radius: 10px;
             font-weight: 500;
         }
 
         .status.counting {
-            background: rgba(16, 185, 129, 0.15);
+            background: rgba(16, 185, 129, 0.12);
             color: #10b981;
         }
 
         .status.ended {
-            background: rgba(239, 68, 68, 0.15);
+            background: rgba(239, 68, 68, 0.12);
             color: #ef4444;
         }
 
         .back-btn {
-            padding: 8px 20px;
+            padding: 6px 16px;
             background: transparent;
             border: 1px solid #30363d;
-            border-radius: 6px;
-            font-size: 12px;
+            border-radius: 5px;
+            font-size: 11px;
             font-weight: 500;
             color: #8b949e;
             cursor: pointer;
@@ -231,25 +223,28 @@
 
         .error-msg {
             color: #ef4444;
-            font-size: 12px;
-            padding: 8px 10px;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            border-radius: 6px;
+            font-size: 11px;
+            padding: 6px 8px;
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            border-radius: 5px;
             display: none;
         }
 
-        @media (max-width: 400px) {
-            .time-value { font-size: 22px; }
-            .time-unit { min-width: 48px; padding: 8px 6px; }
-            .event-name { font-size: 18px; }
+        /* Compact mode for very small embeds */
+        @media (max-width: 320px) {
+            .container { padding: 10px; }
+            .timer-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+            .time-unit { padding: 8px 2px; }
+            .time-value { font-size: 18px; }
+            .time-label { font-size: 8px; }
+            .event-name { font-size: 13px; }
         }
     </style>
 <base target="_blank">
 </head>
 <body>
     <div class="container">
-        <!-- Setup Screen -->
         <div class="setup-screen" id="setupScreen">
             <h1>New Countdown</h1>
 
@@ -279,11 +274,10 @@
             <button class="start-btn" id="startBtn">Start Countdown</button>
         </div>
 
-        <!-- Timer Screen -->
         <div class="timer-screen" id="timerScreen">
             <div class="event-name" id="displayName"></div>
             <div class="target-date" id="displayTarget"></div>
-            <div class="timer-display" id="timerDisplay"></div>
+            <div class="timer-grid" id="timerDisplay"></div>
             <div class="status counting" id="status">Counting down...</div>
             <button class="back-btn" id="backBtn">New Countdown</button>
         </div>
@@ -298,7 +292,6 @@
             let targetTimestamp;
             let eventNameText;
 
-            // Set default date to tomorrow
             const now = new Date();
             now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
             now.setDate(now.getDate() + 1);
@@ -311,12 +304,10 @@
                 dateInput.value = now.toISOString().slice(0, 16);
             }
 
-            // Multi-select option buttons
             document.querySelectorAll('.option-btn').forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     const mode = this.dataset.mode;
                     if (this.classList.contains('active')) {
-                        // Don't allow deselecting the last option
                         if (activeModes.length > 1) {
                             this.classList.remove('active');
                             activeModes = activeModes.filter(function(m) { return m !== mode; });
@@ -324,7 +315,6 @@
                     } else {
                         this.classList.add('active');
                         activeModes.push(mode);
-                        // Sort to maintain order
                         const order = ['months', 'weeks', 'days', 'hours', 'minutes', 'seconds'];
                         activeModes.sort(function(a, b) {
                             return order.indexOf(a) - order.indexOf(b);
@@ -333,13 +323,11 @@
                 });
             });
 
-            // Start button
             const startBtn = document.getElementById('startBtn');
             if (startBtn) {
                 startBtn.addEventListener('click', startCountdown);
             }
 
-            // Back button
             const backBtn = document.getElementById('backBtn');
             if (backBtn) {
                 backBtn.addEventListener('click', resetCountdown);
@@ -424,7 +412,7 @@
                     const status = document.getElementById('status');
 
                     if (timerDisplay) {
-                        timerDisplay.innerHTML = '<div style="font-size: 24px; font-weight: 700; color: #ef4444;">Time is Up!</div>';
+                        timerDisplay.innerHTML = '<div style="font-size: 18px; font-weight: 700; color: #ef4444; grid-column: 1 / -1;">Time is Up!</div>';
                     }
                     if (status) {
                         status.textContent = 'Event has started';
@@ -445,14 +433,6 @@
                 const msPerWeek = msPerDay * 7;
                 const msPerMonth = msPerDay * 30.44;
 
-                const months = Math.floor(diff / msPerMonth);
-                const weeks = Math.floor(diff / msPerWeek);
-                const days = Math.floor(diff / msPerDay);
-                const hours = Math.floor(diff / msPerHour);
-                const minutes = Math.floor((diff % msPerHour) / msPerMinute);
-                const seconds = Math.floor((diff % msPerMinute) / msPerSecond);
-
-                // For cascading display (when multiple units selected)
                 let remaining = diff;
                 const fullMonths = Math.floor(remaining / msPerMonth);
                 remaining %= msPerMonth;
@@ -466,10 +446,7 @@
                 remaining %= msPerMinute;
                 const fullSeconds = Math.floor(remaining / msPerSecond);
 
-                return {
-                    months, weeks, days, hours, minutes, seconds,
-                    fullMonths, fullWeeks, fullDays, fullHours, fullMinutes, fullSeconds
-                };
+                return { fullMonths, fullWeeks, fullDays, fullHours, fullMinutes, fullSeconds };
             }
 
             function renderTimer(u) {
@@ -477,7 +454,6 @@
                 if (!display) return;
 
                 let html = '';
-                const parts = [];
 
                 const createUnit = function(val, label) {
                     return '<div class="time-unit"><div class="time-value">' + 
@@ -485,39 +461,37 @@
                            '</div><div class="time-label">' + label + '</div></div>';
                 };
 
-                // Build display based on selected modes using cascading values
-                activeModes.forEach(function(mode, index) {
+                activeModes.forEach(function(mode) {
                     let val, label;
                     switch(mode) {
                         case 'months':
                             val = u.fullMonths;
-                            label = 'Months';
+                            label = 'Mo';
                             break;
                         case 'weeks':
                             val = u.fullWeeks;
-                            label = 'Weeks';
+                            label = 'Wk';
                             break;
                         case 'days':
                             val = u.fullDays;
-                            label = 'Days';
+                            label = 'Day';
                             break;
                         case 'hours':
                             val = u.fullHours;
-                            label = 'Hours';
+                            label = 'Hr';
                             break;
                         case 'minutes':
                             val = u.fullMinutes;
-                            label = 'Mins';
+                            label = 'Min';
                             break;
                         case 'seconds':
                             val = u.fullSeconds;
-                            label = 'Secs';
+                            label = 'Sec';
                             break;
                     }
-                    parts.push(createUnit(val, label));
+                    html += createUnit(val, label);
                 });
 
-                html = parts.join('<div class="separator">:</div>');
                 display.innerHTML = html;
             }
 
